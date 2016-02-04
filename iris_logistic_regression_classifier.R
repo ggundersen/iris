@@ -27,11 +27,18 @@ predict <- function(theta, X) {
 
 # ------------------------------- END FUNCTIONS -------------------------------
 
-plot(iris$Petal.Width, iris$Petal.Length)
+# This plot makes it pretty clear that we should be able to classify the irises
+# by species based on their petal lengths and widths. To simplify the problem
+# for myself, I'm going to remove the virginica species, which overlaps with
+# the setosa species.
+plot(iris$Petal.Width, iris$Petal.Length, col=iris$Species)
 
 # Remove virginica species to avoid multi-class problem.
 remove_idx <- which(iris$Species != "virginica")
 iris <- iris[remove_idx,]
+
+# Verify that this classification problem is straightforward.
+plot(iris$Petal.Width, iris$Petal.Length, col=iris$Species)
 
 # Randomize dataset before splitting it into training and testing sets.
 rand_idx <- sample(nrow(iris))
